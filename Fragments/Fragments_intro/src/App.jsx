@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/no-unknown-property */
 // import REACT from "react";
@@ -7,11 +9,24 @@ import ErrorMsg from "./components/ErrorMsg";
 import './App.css';
 import Container from "./components/Container";
 import FoodInput from "./components/FoodInput";
+import { useState } from "react";
 
 function App() {
 
-  let foodItems = ['Dal','Green Vegetable','Biryani','Ice cream','Laddu']
+ 
   //let foodItems = [];
+
+  
+
+  let [textShow, setTextState] = useState();
+  let [foodItems, setFoodItems] = useState(["Salad",'green veggies','Roti']);
+ 
+
+  const onKeyDown = (event) => {
+    console.log(event.target.value);
+    
+    setTextState(event.target.value)
+  };
 
   
  return ( 
@@ -19,9 +34,10 @@ function App() {
   <Container>
    
     <h1 className="food-heading">Healthy Foods</h1>
-    <FoodInput></FoodInput>
-
+   
   <ErrorMsg items={foodItems}></ErrorMsg>
+  <FoodInput>handleKeyDown={handleKeyDown}</FoodInput>
+  <p>{textShow}</p>
   <FoodItems items={foodItems} handleByButton = {() => console.log("Clicked")} ></FoodItems>
 
 </Container>
